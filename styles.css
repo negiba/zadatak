@@ -1,0 +1,502 @@
+body {
+    background-color: #f1f1f1;
+}
+
+@media (min-width: 300px) { 
+    .input {
+        margin-bottom: .5rem;
+    }
+
+    .inputs {
+        margin-bottom: 2rem;
+    }
+
+    .current-data-info {
+        margin-bottom: 1rem;
+    }
+
+    .two-side-pill {
+        margin-bottom: 1rem;
+    }
+
+    .card-title {
+        font-size: .7rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    .input {
+        margin-bottom: .5rem;
+    }
+
+    .current-data-info {
+        margin-bottom: .5rem;
+    }
+
+    .two-side-pill {
+        margin-bottom: .5rem;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    .input {
+        margin-bottom: .5rem;
+    }
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 1090px) { 
+    .input {
+        margin-bottom: 0;
+    }
+
+    .reset-pill-reset {
+        display: block;
+    }
+ }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .input {
+        margin-bottom: 0;
+    }
+ }
+
+.title {
+    min-height: 3rem;
+    max-height: 5rem;
+    border-bottom: solid gray .01rem;
+}
+
+.title-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.inputs-invisible {
+    margin: 0;
+    padding: 0;
+    height: 0;
+}
+
+.inputs {
+    margin-top: 1rem;
+    padding: 0 15px 0 15px;
+}
+
+.input {
+    line-height: 2rem;
+    min-height: 2rem;
+    max-height: 3rem;
+    min-width: 10rem;
+    max-width: 20rem;
+    border: solid #020249 .1rem;
+    border-radius: 500rem;
+    outline: none;
+}
+
+.input:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.input:nth-child(2) {
+    margin-right: 5rem;
+}
+
+.input-field {
+    max-height: 1.8rem;    
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: #f1f1f1;
+}  
+
+.icon-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.6rem;
+    min-height: 2rem;
+    max-height: 3rem;
+    margin-right: .5rem;  
+}
+
+.icon {    
+    max-width:100%;
+    max-height:100%;       
+}
+
+.apply {
+    cursor: pointer;
+    background-color: #00f5ff;
+    color: #444343;
+    line-height: 2rem;
+    min-height: 2rem;
+    max-height: 3rem;
+    min-width: 10rem;
+    max-width: 15rem;    
+    border-radius: 500rem;
+}
+
+.tabs {
+    padding: 0 15px 0 15px;
+}
+
+.tabs-row {
+    position: relative;    
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 2rem;
+}
+
+.tab {
+    position: relative;
+    font-weight: 700;
+    line-height: 2.2rem;
+    text-align: center;
+    min-width: 5rem;
+    max-width: 10rem;
+    min-height: 2.5rem;
+    max-height: 2.5rem;
+    border: solid gray .01rem;
+    border-top: solid #00f5ff 0.3rem;
+    border-bottom: solid #f1f1f1 .01rem !important;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.tab:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.tab-active {
+    background-color: aliceblue;    
+    z-index: 100;
+}
+
+.content {    
+    height: auto;
+    border-top: solid gray .01rem;    
+    background-color: aliceblue;    
+}
+
+.current-data-invisible {
+    margin: 0;
+    padding: 0;
+    height: 0;   
+}
+
+.current-data {    
+    margin: 1rem 0 1rem 0;
+}
+
+.current-data-info {    
+    min-width: 10rem;
+    max-width: 15rem;
+    background-color: #ffffff;
+    padding-right: 0;
+    padding-bottom: .2rem;
+}
+
+.current-data-info-title {
+    padding-left: 0;
+    font-size: .8rem;
+    font-weight: 700;
+    color: darkblue;
+}
+
+.current-data-info-pair {
+    margin-right: 0;
+    padding-right: 0;
+    line-height: .9rem;
+}
+
+.current-data-info-key {
+    font-size: .7rem;
+    font-weight: 400;
+    color: #b3b3b3;
+    padding-left: 2.5%;
+    padding-right: 0;
+}
+
+.current-data-info-value {
+    font-size: .7rem;
+    font-weight: 400;
+    color: darkblue;
+    padding-right: 0;
+}
+
+.two-side-pill-content {
+    cursor: pointer;
+    font-size: .8rem;
+    font-weight: 600;
+    background-color: #020249;
+    line-height: 2rem;
+    min-height: 2rem;
+    max-height: 2rem;
+    /* min-width: 10rem; */
+    max-width: 20rem;    
+    border-radius: 500rem;
+    outline: none;   
+}
+
+.two-side-pill-left {
+    text-align: center;
+    color: #020249;
+    background-color: #ffffff;
+    border: solid #020249 .1rem;
+    border-top-left-radius: 500rem;
+    border-bottom-left-radius: 500rem;
+}
+
+.two-side-pill-active {
+    background-color: #020249 !important;
+    color: #ffffff !important;
+}
+
+.two-side-pill-right {
+    text-align: center;
+    color: #020249;
+    background-color: #ffffff;
+    border: solid #020249 .1rem;
+    border-top-right-radius: 500rem;
+    border-bottom-right-radius: 500rem;
+}
+
+.datepicker {
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #444343;
+}
+
+.reset-pill {
+    cursor: pointer;
+    font-size: .8rem;
+    font-weight: 600;
+    /* background-color: #020249; */
+    line-height: 2rem;
+    min-height: 2rem;
+    max-height: 2rem;
+    /* min-width: 12rem; */
+    max-width: 12rem;
+    border: solid blue .1rem;
+    border-radius: 500rem;
+    outline: none;
+}
+
+.reset-pill-img-holder {
+    position: relative;
+    margin-right: 1rem;
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+.reset-pill-img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.reset-pill-reset {
+    text-align: center;
+    color: #777575;
+}
+
+#show-tables {
+    display: none;
+}
+
+#show-graphs {
+    display: none;
+}
+
+.hgw-row {
+    margin: 1rem 0 1rem 0;
+}
+
+.hgw-pill {
+    cursor: pointer;
+    font-size: .8rem;
+    font-weight: 600;
+    /* background-color: #020249; */
+    line-height: 2rem;
+    min-height: 2rem;
+    max-height: 2rem;
+    /* min-width: 12rem; */
+    max-width: 6rem;
+    border: solid #050581 .1rem;
+    border-radius: 500rem;
+    outline: none;
+    padding: 0 0 0 .5rem;
+}
+
+.hgw-pill-active {
+    background-color: #050581;
+    color: #ffffff;
+}
+
+/* .icon-down {
+    min-width: 4rem;
+} */
+
+.icon-fs {
+    font-size: 2rem;
+}
+
+.card {
+    padding: .5rem;
+    max-width: 41rem;
+    min-height: 20rem;
+    max-height: 20rem;
+    margin-bottom: .3rem;
+}
+
+.card-title {
+    padding-left: 1rem;
+    font-weight: 600;
+}
+
+.title-line {
+    margin-bottom: 1rem;
+}
+
+/* .card:not(:last-child) {
+    margin-right: 1rem;
+} */
+
+.chart {
+    height: 30rem;
+}
+
+.line-card {
+    min-height: 3rem;
+    max-height: 3rem;
+}
+
+.line-card-title {
+    font-size: .9rem;
+    font-weight: 700;
+    color: blue;
+}
+
+.line-card-columned {
+    min-height: 5rem;
+    max-height: 5rem;
+}
+
+.line-card-columned-triple {
+    min-height: 9rem;
+    max-height: 9rem;
+}
+
+.line-card-subtitle {
+    font-size: 1rem;
+    color: #5c6b70;
+    min-width: 5rem;
+}
+
+.badge {
+    min-width: 5rem;
+    min-height: 1.2rem;
+}
+
+.badge-info {
+    background-color: orange;
+}
+
+.line-card-triple {
+    min-height: 9rem;
+    max-height: 9rem;
+}
+
+.big-card {
+    min-height: 9rem;
+    max-height: 9rem;   
+}
+
+.big-card-table {
+    text-align: center;
+}
+
+.table {
+    font-size: .9rem;
+}
+
+.table-column {
+    padding: 0 .2rem 0 0;
+}
+
+.table-row-colored {
+    background-color: #f1f1f1;
+}
+
+.table-item-avg {
+    color: red;
+}
+
+.border-r {
+    border-right: solid .1rem #b3b3b3 !important;
+}
+
+.bigger-card {
+    min-height: 12rem;
+    max-height: 12rem;
+}
+
+.hgw-info {
+    visibility: visible;
+}
+
+.hgw-info-card {
+    min-height: 30rem;
+}
+
+.hgw-info-card-rows {
+    margin-bottom: .2rem;
+}
+
+.hgw-info-card-title {
+    margin: 1rem 0 1rem 0;
+    color: blue;
+    min-height: 3rem;
+    text-align: center;    
+    font-weight: 700;
+    border-bottom: solid #f1f1f1 .1rem;
+}
+
+.hgw-info-card-subtitle {    
+    color: #444343;
+    text-align: center;
+    font-size: .8rem;    
+    font-weight: 400;    
+}
+
+.hgw-info-card-subtitle-bold {
+    color: #050581;
+    text-align: center;
+    font-size: .8rem;    
+    font-weight: 400;    
+}
+
+.hgw-info-card-icon {
+    color: lightgreen;    
+    font-size: 1.2rem;
+}
+
+.btn {
+    width: 100%;
+    background-color: #ffffff !important;
+    padding: 0;
+    border: solid #050581 .1rem;
+    outline: none !important;
+    border-radius: 500rem;
+    text-align: center;
+}

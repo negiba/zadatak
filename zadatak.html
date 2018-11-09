@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zadatak</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="JavaScript-autoComplete-master/auto-complete.css">
+    <script src="JavaScript-autoComplete-master/auto-complete.min.js" async></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row title align-items-end">
+            <div class="col title-text">Report</div>
+        </div>
+        <div class="row align-items-center inputs" id="inputs">
+            <div class="col-12 col-md-12 col-lg-4 input text-center">
+                <input type="text" id="mac" name="mac" class="input-field" placeholder="Mac: address">
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 input text-center">
+                <input id="contractId" type="text" name="contract" class="input-field awesomplete" placeholder="Contract ID">
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 row">.
+                <div class="icon-holder">
+                    <img src="sync-solid.svg" alt="refresh" class="icon">
+                </div>
+                <div class="apply text-center" id="apply">Apply filters</div>
+            </div>
+        </div>
+        <div class="row current-data current-data-invisible invisible d-flex align-items-center justify-content-md-between justify-content-sm-between"
+            id="current-data">
+            <div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 current-data-info">
+                <div class="col current-data-info-title">Currently viewing data:</div>
+                <div class="col row current-data-info-pair">
+                    <div class="col-5 current-data-info-key">MAC address:</div>
+                    <div class="col-7 current-data-info-value" id="current-mac-address"></div>
+                </div>
+                <div class="col row current-data-info-pair">
+                    <div class="col-5 current-data-info-key">Contract ID:</div>
+                    <div class="col-7 current-data-info-value" id="current-contract-id"></div>
+                </div>
+                <div class="col row current-data-info-pair">
+                    <div class="col-5 current-data-info-key">City:</div>
+                    <div class="col-7 current-data-info-value" id="current-contract-city"></div>
+                </div>
+            </div>
+            <div class="col-12 col-xs-12 col-sm-4 col-md-3 col-lg-3 two-side-pill">
+                <div class="row two-side-pill-content align-items-center">
+                    <div class="col-6 two-side-pill-left two-side-pill-active" id="showDay">1 Day</div>
+                    <div class="col-6 two-side-pill-right" id="showWeek">7 Days</div>
+                </div>
+                <div class="row datepicker justify-content-center">
+                    &lt; 17.06.2018. - 18.06.2018. &gt;
+                </div>
+            </div>
+            <div class="col-12 col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <div class="row reset-pill d-flex justify-content-center align-items-center">
+                    <div class="reset-pill-img-holder">
+                        <img class="reset-pill-img" src="sliders-h-solid.svg" alt="refresh" class="icon">
+                    </div>
+                    <div class="reset-pill-reset" id="reset-filters">Reset filters</div>
+                </div>
+            </div>
+        </div>
+        <div class="row tabs">
+            <ul class="tabs-row col-12 row">
+                <li class="col-2 tab" id="tables">Tables</li>
+                <li class="col-2 tab" id="graphs">Graphs</li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-12 content">
+                <div id="show-graphs">
+                    <div class="hgw-row d-flex flex-row justify-content-end">
+                        <div class="col-4 col-md-2 col-lg-2 hgw-pill align-items-center d-flex flex-row">
+                            <div>HGw Info</div><i class="material-icons icon-down">expand_more</i>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap justify-content-between">
+                        <div class="card d-flex hgw-status-1 col-12 col-md-6 col-lg-6">
+                            <div class="d-flex flex-row justify-content-center title-line">
+                                <div class="col-4 col-md col-lg card-title">HGw Status</div>
+                                <div class="col-4 col-md col-lg align-items-start justify-content-end d-flex flex-row dropdown show">
+                                    <div id="dropDown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="col-4 col-md col-lg hgw-pill align-items-center justify-content-center d-flex flex-row">
+                                        <div>Export</div>
+                                        <i class="material-icons icon-down">expand_more</i>
+                                        <div class="dropdown-menu" aria-labelledby="dropDown1" id="collap1">
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">Print</a>
+                                            <a class="dropdown-item" href="#">Copy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-1 col-lg-1">
+                                    <i class="material-icons icon-fs">fullscreen</i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row chart" id="chart-hgw-status-1"></div>
+                        </div>
+                        <div class="card hgw-status-2 col-12 col-md-6 col-lg-6">
+                            <div class="d-flex flex-row justify-content-center title-line">
+                                <div class="col-4 col-md col-lg card-title">HGw Status 2</div>
+                                <div class="col-4 col-md col-lg align-items-start justify-content-end d-flex flex-row dropdown show">
+                                    <div id="dropDown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="col-4 col-md col-lg hgw-pill align-items-center justify-content-center d-flex flex-row">
+                                        <div>Export</div>
+                                        <i class="material-icons icon-down">expand_more</i>
+                                        <div class="dropdown-menu" aria-labelledby="dropDown2" id="collap2">
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">Print</a>
+                                            <a class="dropdown-item" href="#">Copy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-1 col-lg-1">
+                                    <i class="material-icons icon-fs">fullscreen</i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row chart" id="chart-hgw-status-2"></div>
+                        </div>
+                        <div class="card hgw-interterence col-12 col-md-6 col-lg-6">
+                            <div class="d-flex flex-row justify-content-center title-line">
+                                <div class="col-4 col-md col-lg card-title">HGw Interterence</div>
+                                <div class="col-4 col-md col-lg align-items-start justify-content-end d-flex flex-row dropdown show">
+                                    <div id="dropDown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="col-4 col-md col-lg hgw-pill align-items-center justify-content-center d-flex flex-row">
+                                        <div>Export</div>
+                                        <i class="material-icons icon-down">expand_more</i>
+                                        <div class="dropdown-menu" aria-labelledby="dropDown3" id="collap3">
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">Print</a>
+                                            <a class="dropdown-item" href="#">Copy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-1 col-lg-1">
+                                    <i class="material-icons icon-fs">fullscreen</i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row chart" id="chart-hgw-interterence"></div>
+                        </div>
+                        <div class="card hgw-total-noin col-12 col-md-6 col-lg-6">
+                            <div class="d-flex flex-row justify-content-center title-line">
+                                <div class="col-4 col-md col-lg card-title">Total No. Of interference Network</div>
+                                <div class="col-4 col-md col-lg align-items-start justify-content-end d-flex flex-row dropdown show">
+                                    <div id="dropDown4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="col-4 col-md col-lg hgw-pill align-items-center justify-content-center d-flex flex-row">
+                                        <div>Export</div>
+                                        <i class="material-icons icon-down">expand_more</i>
+                                        <div class="dropdown-menu" aria-labelledby="dropDown4" id="collap4">
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">Print</a>
+                                            <a class="dropdown-item" href="#">Copy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-1 col-lg-1">
+                                    <i class="material-icons icon-fs">fullscreen</i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row chart" id="chart-hgw-total-noin"></div>
+                        </div>
+                        <div class="card hgw-rss col-12 col-md-6 col-lg-6">
+                            <div class="d-flex flex-row justify-content-center title-line">
+                                <div class="col-4 col-md col-lg card-title">HGw - RSS</div>
+                                <div class="col-4 col-md col-lg align-items-start justify-content-end d-flex flex-row dropdown show">
+                                    <div id="dropDown5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="col-4 col-md col-lg hgw-pill align-items-center justify-content-center d-flex flex-row">
+                                        <div>Export</div>
+                                        <i class="material-icons icon-down">expand_more</i>
+                                        <div class="dropdown-menu" aria-labelledby="dropDown5" id="collap5">
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">Print</a>
+                                            <a class="dropdown-item" href="#">Copy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-1 col-lg-1">
+                                    <i class="material-icons icon-fs">fullscreen</i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row chart" id="chart-hgw-rss"></div>
+                        </div>
+                        <div class="card hgw-bit-rate col-12 col-md-6 col-lg-6">
+                            <div class="d-flex flex-row justify-content-center title-line">
+                                <div class="col-4 col-md col-lg card-title">HGw - Bit rate</div>
+                                <div class="col-4 col-md col-lg align-items-start justify-content-end d-flex flex-row dropdown show">
+                                    <div id="dropDown6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="col-4 col-md col-lg hgw-pill align-items-center justify-content-center d-flex flex-row">
+                                        <div>Export</div>
+                                        <i class="material-icons icon-down">expand_more</i>
+                                        <div class="dropdown-menu" aria-labelledby="dropDown6" id="collap6">
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">Print</a>
+                                            <a class="dropdown-item" href="#">Copy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-1 col-lg-1">
+                                    <i class="material-icons icon-fs">fullscreen</i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row chart" id="chart-hgw-bit-rate"></div>
+                        </div>
+                        <div class="card hgw-nor col-12 col-md-6 col-lg-6">
+                            <div class="d-flex flex-row justify-content-center title-line">
+                                <div class="col-4 col-md col-lg card-title">HGw - Number of retransmission</div>
+                                <div class="col-4 col-md col-lg align-items-start justify-content-end d-flex flex-row dropdown show">
+                                    <div id="dropDown7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="col-4 col-md col-lg hgw-pill align-items-center justify-content-center d-flex flex-row">
+                                        <div>Export</div>
+                                        <i class="material-icons icon-down">expand_more</i>
+                                        <div class="dropdown-menu" aria-labelledby="dropDown7" id="collap7">
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">Print</a>
+                                            <a class="dropdown-item" href="#">Copy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-1 col-lg-1">
+                                    <i class="material-icons icon-fs">fullscreen</i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row chart" id="chart-hgw-nor"></div>
+                        </div>
+                        <div class="card hgw-noc col-12 col-md-6 col-lg-6">
+                            <div class="d-flex flex-row justify-content-center title-line">
+                                <div class="col-4 col-md col-lg card-title">HGw - Number of clients</div>
+                                <div class="col-4 col-md col-lg align-items-start justify-content-end d-flex flex-row dropdown show">
+                                    <div id="dropDown8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        class="col-4 col-md col-lg hgw-pill align-items-center justify-content-center d-flex flex-row">
+                                        <div>Export</div>
+                                        <i class="material-icons icon-down">expand_more</i>
+                                        <div class="dropdown-menu" aria-labelledby="dropDown8" id="collap8">
+                                            <a class="dropdown-item" href="#">CSV</a>
+                                            <a class="dropdown-item" href="#">Excel</a>
+                                            <a class="dropdown-item" href="#">PDF</a>
+                                            <a class="dropdown-item" href="#">Print</a>
+                                            <a class="dropdown-item" href="#">Copy</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-1 col-lg-1">
+                                    <i class="material-icons icon-fs">fullscreen</i>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row chart" id="chart-hgw-noc"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="show-tables">
+                    <div class="hgw-row d-flex flex-row justify-content-end">
+                        <div class="col-4 col-md-2 col-lg-2 hgw-pill hgw-pill-active align-items-center d-flex flex-row"
+                            id="hgw-info-icon">
+                            <div id="hgw-pill">HGw Info</div><i class="material-icons icon-down" id="hgw-icon">keyboard_arrow_up</i>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row flex-wrap" style="font-size: 1rem">
+                        <div class="table-column d-flex flex-column col-12 col-md col-lg">
+                            <div class="card d-flex flex-row line-card justify-content-between">
+                                <div class="line-card-title">Overall Status</div>
+                                <div><span class="badge badge-pill badge-info">Medium</span></div>
+                            </div>
+                            <div class="card d-flex flex-row line-card justify-content-between">
+                                <div class="line-card-title">RSS Status</div>
+                                <div><span class="badge badge-pill badge-danger">Bad</span></div>
+                            </div>
+                            <div class="card d-flex flex-row line-card justify-content-between">
+                                <div class="line-card-title">Client RSS Status</div>
+                                <div><span class="badge badge-pill badge-info">Medium</span></div>
+                            </div>
+                            <div class="card d-flex flex-row line-card justify-content-between">
+                                <div class="line-card-title">Sticky Client Status</div>
+                                <div><span class="badge badge-pill badge-success">Good</span></div>
+                            </div>
+                            <div class="card d-flex flex-column line-card-triple">
+                                <div class="d-flex flex-row line-card justify-content-between">
+                                    <div class="line-card-title">Interference Status - overall</div>
+                                    <div><span class="badge badge-pill badge-info">Medium</span></div>
+                                </div>
+                                <div class="d-flex flex-row line-card justify-content-between">
+                                    <div class="line-card-title">Interference Status Co - Channel</div>
+                                    <div><span class="badge badge-pill badge-success">Good</span></div>
+                                </div>
+                                <div class="d-flex flex-row line-card justify-content-between">
+                                    <div class="line-card-title">Interference Status - Adjacent</div>
+                                    <div><span class="badge badge-pill badge-danger">Bad</span></div>
+                                </div>
+                            </div>
+                            <div class="card d-flex line-card-columned justify-content-between">
+                                <div class=" flex-row line-card-title">HGw Interference</div>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="d-flex flex-column">
+                                        <div class="d-flex flex-row">
+                                            <div class="line-card-subtitle">UniFi</div>
+                                            <div><span class="badge badge-pill badge-success">Good</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <div class="d-flex flex-row">
+                                            <div class="line-card-subtitle">Home</div>
+                                            <div><span class="badge badge-pill badge-info">Medium</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card d-flex line-card-columned justify-content-between">
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="line-card-title">Retransmission Status</div>
+                                    <div><span class="badge badge-pill badge-danger">Bad</span></div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="line-card-subtitle">HGw Number of retransmission</div>
+                                    <div><span class="line-card-subtitle">5515</span></div>
+                                </div>
+                            </div>
+                            <div class="card d-flex line-card-columned justify-content-between">
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="line-card-subtitle">Total Number of Clients</div>
+                                    <div><span class="line-card-subtitle">120</span></div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="line-card-subtitle">Max. number of concurent clients</div>
+                                    <div><span class="line-card-subtitle">10</span></div>
+                                </div>
+                            </div>
+                            <div class="card d-flex line-card-columned-triple justify-content-between">
+                                <div class="d-flex flex-row align-items-center ">
+                                    <div class="line-card-title">HGw Combined status</div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="line-card-subtitle">HGw Number of clients</div>
+                                    <div><span class="line-card-subtitle">15</span></div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="line-card-subtitle">HGw Number of sticky clients</div>
+                                    <div><span class="line-card-subtitle">2</span></div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="line-card-subtitle">Data tranfered [GB]</div>
+                                    <div><span class="line-card-subtitle">5.7</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-column d-flex flex-column col-12 col-md col-lg">
+                            <div class="card d-flex flex-column big-card justify-content-between">
+                                <div class="line-card-title">HGw Bitrate [Mbps]</div>
+                                <div class="table">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-r">KPI Name</th>
+                                                <th class="big-card-table">Min</th>
+                                                <th class="big-card-table">Avg</th>
+                                                <th class="big-card-table">Max</th>
+                                                <th class="big-card-table">Last</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-row-colored">
+                                                <th class="border-r">Bitrate</th>
+                                                <th class="big-card-table">15</th>
+                                                <th class="big-card-table table-item-avg">15</th>
+                                                <th class="big-card-table">15</th>
+                                                <th class="big-card-table">15</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card d-flex flex-column line-card justify-content-between">
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="line-card-subtitle">HGw total traffic [GB]</div>
+                                    <div><span class="line-card-subtitle">5.7</span></div>
+                                </div>
+                            </div>
+                            <div class="card d-flex flex-column big-card justify-content-between">
+                                <div class="line-card-title">HGw RSS</div>
+                                <div class="table">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-r">KPI Name</th>
+                                                <th class="big-card-table">Min</th>
+                                                <th class="big-card-table">Avg</th>
+                                                <th class="big-card-table">Max</th>
+                                                <th class="big-card-table">Last</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-row-colored">
+                                                <th class="border-r">RSS [dBm]</th>
+                                                <th class="big-card-table">-42</th>
+                                                <th class="big-card-table table-item-avg">-35</th>
+                                                <th class="big-card-table">-30</th>
+                                                <th class="big-card-table">-32</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card d-flex flex-column big-card justify-content-between">
+                                <div class="line-card-title">HGw Interference network RSS</div>
+                                <div class="table">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-r">KPI Name</th>
+                                                <th class="big-card-table"></th>
+                                                <th class="big-card-table">Avg</th>
+                                                <th class="big-card-table">Max</th>
+                                                <th class="big-card-table">Last</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-row-colored">
+                                                <th class="border-r">RSS [dBm]</th>
+                                                <th class="big-card-table"></th>
+                                                <th class="big-card-table table-item-avg">-42</th>
+                                                <th class="big-card-table">-35</th>
+                                                <th class="big-card-table">-40</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-column d-flex flex-column col-12 col-md col-lg">
+                            <div class="card d-flex flex-column bigger-card col-12 col-md col-lg">
+                                <div class="line-card-title">Wifi connected time</div>
+                                <div class="d-flex flex-row" style="width: 100%; height: 100%;" id="chart-pie-wct"></div>
+                            </div>
+                            <div class="card d-flex flex-column bigger-card col-12 col-md-3 col-lg-2">
+                                <div class="line-card-title">HGw Wifi Usage</div>
+                                <div class="d-flex flex-row" style="width: 100%; height: 100%;" id="chart-pie-wusage"></div>
+                            </div>
+                            <div class="card d-flex flex-column bigger-card col-12 col-md-3 col-lg-2">
+                                <div class="line-card-title">HGw Interference</div>
+                                <div class="d-flex flex-row" style="width: 100%; height: 100%;" id="chart-pie-interference"></div>
+                            </div>
+                            <div class="card d-flex flex-column bigger-card col-12 col-md-3 col-lg-2">
+                                <div class="line-card-title">HGw Interference Home</div>
+                                <div class="d-flex flex-row" style="width: 100%; height: 100%;" id="chart-pie-interference-home"></div>
+                            </div>
+                        </div>
+                        <div class="table-column d-flex flex-column col-12 col-md col-lg">
+                            <div class="card d-flex flex-column bigger-card col-12 col-md-3 col-lg-2">
+                                <div class="line-card-title">HGw Channel</div>
+                                <div class="d-flex flex-row" style="width: 100%; height: 100%;" id="chart-pie-channel"></div>
+                            </div>
+                            <div class="card d-flex flex-column bigger-card col-12 col-md-3 col-lg-2">
+                                <div class="line-card-title">HGw Percent of time with Sticky Clients</div>
+                                <div class="d-flex flex-row" style="width: 100%; height: 100%;" id="chart-pie-sticky"></div>
+                            </div>
+                            <div class="card d-flex flex-column bigger-card col-12 col-md-3 col-lg-2">
+                                <div class="line-card-title">HGw Client's RSS Status</div>
+                                <div class="d-flex flex-row" style="width: 100%; height: 100%;" id="chart-pie-client-rss"></div>
+                            </div>
+                            <div class="card d-flex flex-column bigger-card col-12 col-md-3 col-lg-2">
+                                <div class="line-card-title">HGw RSS Status</div>
+                                <div class="d-flex flex-row" style="width: 100%; height: 100%;" id="chart-pie-rss"></div>
+                            </div>
+                        </div>
+                        <div class="table-column d-flex flex-column col-12 col-sm-12 col-xs-12 col-md col-lg hgw-info"
+                            id="hgw-info">
+                            <div class="card d-flex flex-column hgw-info-card">
+                                <div class="d-flex flex-row hgw-info-card-title align-items-end justify-content-center">HGwInfo</div>
+                                <div class="flex-row">
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Wifi enabled:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">
+                                            <i class="material-icons hgw-info-card-icon">done</i>Yes
+                                        </div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">HGw standard:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">802.11b</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">IP Address:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">192.168.1.1</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">MAC Address:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">AA:BB:XX:DD:GG</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Contract No:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">220101010101</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Auto channel enabled:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">
+                                            <i class="material-icons hgw-info-card-icon">done</i>Yes
+                                        </div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">SSID:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">ibis-wifi</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Channel:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">6</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Security:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">WPA/WPA-2-PSK</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Band:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">2,4 GHz</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Hidden SSID:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">No</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Bandwith:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">22 MHz</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Up time:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">(35369) 2
+                                            days,
+                                            19:04:10</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Equipment:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">ABC</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Description:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">modem</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">CMTS ID</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">BG-C-1-IBIS</div>
+                                    </div>
+                                    <div class="hgw-info-card-rows d-flex flex-row align-items-center justify-content-between">
+                                        <div class="hgw-info-card-subtitle">Firmware:</div>
+                                        <div class="d-flex hgw-info-card-subtitle-bold align-items-center">2.2.1004.76</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+        <script src="script.js"></script>
+</body>
+
+</html>
